@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+       <title>FER - Image File</title>
+        <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <style>
+        .page {text-align: center;}
+
+        </style>
+</head>
+<body>
+
+<div class="back_button">
+<input class="button" onclick="history.back()" value = "Go Back"></div>
+<div class="page">
+<br>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+   {{ form.as_p }}
+   <br>
+  <input class = "button" type = "submit" value = "Submit"></button>
+    <br>
+</form>
+
+{% if img_obj %}
+<br>
+<br>
+  <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
+ <div class="emotion"> <h3>Identified emotion : {{emotion}}</h3></div>
+{% endif %}
+</div>
+</body>
+</html>

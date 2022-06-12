@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Facial Emotion Recognition - Video File</title>
+            <link rel="stylesheet"
+                  href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+            <style>
+            .page {text-align: center;}
+
+        </style>
+    </head>
+    <body>
+    <div class="back_button">
+    <input class="button" onclick="history.back()" value = "Go Back"></div>
+		<div style="width: 500px; margin: auto;">
+			<fieldset name="Video File Upload">
+				{% if msg %} {% autoescape off %} {{ msg }} {% endautoescape %} {% endif %}
+				<form method="post" action="/" enctype="multipart/form-data">
+					{% csrf_token %}
+					<dl>
+						<p>
+							<label>Select a video file</label>&nbsp;&nbsp;
+							<input type="file" name="file" autocomplete="off" required>
+						</p>
+					</dl>
+					<p>
+						<input type="submit" value="Upload">
+					</p>
+				</form>
+			</fieldset>
+			
+			{% if filename %}
+				<div style="margin: 10px auto;">
+					<video autoplay="autoplay" controls="controls" preload="preload">
+						<source src="{{ MEDIA_URL }}/{{ filename }}" type="video/mp4"></source>
+					</video>
+				</div>
+			{% endif %}
+		</div>	
+    </body>
+</html>
